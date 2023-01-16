@@ -1,0 +1,74 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "name": "Samsung Galaxy A03s Dual Sim 64 Gb Preto 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_822006-MLA48160649416_112021-I.jpg",
+      "listPrice": 1499,
+      "salePrice": 849
+    },
+    {
+      "id": 2,
+      "name": "Moto G52 Dual Sim 128 Gb Azul 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_698010-MLA51072219180_082022-I.jpg",
+      "listPrice": 1999,
+      "salePrice": 1239
+    },
+    {
+      "id": 3,
+      "name": "Moto G41 Dual Sim 128 Gb Pearl Gold 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_775621-MLA49424329076_032022-I.jpg",
+      "listPrice": 2199,
+      "salePrice": 1139
+    },
+    {
+      "id": 4,
+      "name": "Moto G41 Dual Sim 128 Gb Pearl Gold 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_775621-MLA49424329076_032022-I.jpg",
+      "listPrice": 2199,
+      "salePrice": 1139
+    },
+    {
+      "id": 5,
+      "name": "Xiaomi Redmi Note 11 (snapdragon) Dual Sim 128 Gb Cinza 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_618682-MLA52130165640_102022-I.jpg",
+      "listPrice": 1999,
+      "salePrice": 1243
+    },
+    {
+      "id": 6,
+      "name": "Samsung Galaxy A13 Dual Sim 128 Gb Azul 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_959000-MLA50019582755_052022-I.jpg",
+      "listPrice": 1999,
+      "salePrice": 1359
+    },
+    {
+      "id": 7,
+      "name": "Moto G20 Dual Sim 64 Gb Pink 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_645782-MLA48317871384_112021-I.jpg",
+      "listPrice": 1199,
+      "salePrice": 1049
+    },
+    {
+      "id": 8,
+      "name": "Samsung Galaxy M13 Dual Sim 128 Gb Azul 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_825358-MLA50696016765_072022-I.jpg",
+      "listPrice": 1549.99,
+      "salePrice": 1282.37
+    },
+    {
+      "id": 9,
+      "name": "Samsung Galaxy A03 Dual Sim 64 Gb Preto 4 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_771276-MLA52132719637_102022-I.jpg",
+      "listPrice": 1299,
+      "salePrice": 886.79
+    },
+    {
+      "id": 10,
+      "name": "Samsung Galaxy A03 Core Dual Sim 32 Gb Black 2 Gb Ram",
+      "imageURL": "http://http2.mlstatic.com/D_892460-MLA52817429394_122022-I.jpg",
+      "listPrice": 1099,
+      "salePrice": 723.63
+    }
+  ]
+}

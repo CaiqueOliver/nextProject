@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getItem, setItem } from "../services/localStorage";
 import { BsFillCartCheckFill, BsFillCartPlusFill } from "react-icons/bs";
 import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
-import { Product } from "../style/style";
+import { Product, Container, Button } from "../style/style";
 
 export async function getStaticProps() {
   let data = [];
@@ -15,69 +14,106 @@ export async function getStaticProps() {
     props: {
       data,
     },
+    revalidate: 30,
   };
 }
 
-export default function Home({ data }, key: string, fallbackValue: string) {
-  const [dados, setDados] = useState([]);
+export default function Home({ data }, key: string) {
   const [cart, setCart] = useState([]);
   const [favorite, setFavorite] = useState([]);
 
-  // useEffect(() => {
-  //   const item = localStorage.getItem("key");
-  //   setCart(item ? JSON.parse(item) : fallbackValue);
-  // }, [fallbackValue, key]);
+  useEffect(() => {
+    const car = localStorage.getItem("car");
+    if (car) {
+      setCart(JSON.parse(car));
+    }
+  });
 
-  // useEffect(() => {
-  //   localStorage.setItem(key, JSON.stringify(cart));
-  // }, [key, cart]);
+  useEffect(() => {
+    const favorite = localStorage.getItem("favorite");
+    if (favorite) {
+      setFavorite(JSON.parse(favorite));
+    }
+  });
 
   const handleClick = (obj: any) => {
+    if (!obj.id) return;
     const element = cart.find((e) => e.id === obj.id);
-    if (element) {
-      const arrayFilter = cart.filter((e) => e.id !== obj.id);
-      setCart(arrayFilter);
+    if (!element) {
+      setCart([obj, ...cart]);
+      localStorage.setItem("car", JSON.stringify([obj, ...cart]));
     } else {
-      setCart([...cart, obj]);
-      setItem("car", [...cart, obj]);
+      const arrayFilter = cart.filter((e: { id: any }) => e.id !== obj.id);
+      setCart(arrayFilter);
+      localStorage.setItem("car", JSON.stringify(arrayFilter));
     }
   };
 
-  const handleClicke = (obj: { id: any }) => {
+  const handleClicke = (obj: any) => {
+    if (!obj.id) return;
     const element = favorite.find((e) => e.id === obj.id);
-    if (element) {
-      const arrFilter = favorite.filter((e) => e.id !== obj.id);
-      setFavorite(arrFilter);
-      setItem("favorite", arrFilter);
+    if (!element) {
+      setFavorite([obj, ...favorite]);
+      localStorage.setItem("favorite", JSON.stringify([obj, ...favorite]));
     } else {
-      setFavorite([...favorite, obj]);
-      setItem("favorite", [...favorite, obj]);
+      const arrayFilter = favorite.filter((e: { id: any }) => e.id !== obj.id);
+      setFavorite(arrayFilter);
+      localStorage.setItem("favorite", JSON.stringify(arrayFilter));
     }
   };
+
   return (
     <div>
       <Product>
-        {data.map((e) => (
-          <div key={e.id}>
-            <h4>{e.title}</h4>
-            <img src={e.thumbnail} alt="Cel Photo" />
-            <h4>{`R$ ${e.price}`}</h4>
-            <button onClick={() => handleClick(e)}>
-              {cart.some((itemCart) => itemCart.id === e.id) ? (
-                <BsFillCartCheckFill />
-              ) : (
-                <BsFillCartPlusFill />
-              )}
-            </button>
-            <button onClick={() => handleClicke(e)}>
-              {favorite.some((itemFavorite) => itemFavorite.id === e.id) ? (
-                <MdOutlineFavorite />
-              ) : (
-                <MdFavoriteBorder />
-              )}
-            </button>
-          </div>
-        ))}
+        {data.map(
+          (e: {
+            id: React.Key;
+            title:
+              | string
+              | number
+              | boolean
+              | React.ReactElement<
+                  any,
+                  string | React.JSXElementConstructor<any>
+                >
+              | React.ReactFragment
+              | React.ReactPortal;
+            thumbnail: string;
+            price: any;
+          }) => (
+            <div key={e.id}>
+              <h4>{e.title}</h4>
+              <img src={e.thumbnail} alt="Cel Photo" />
+              <h4>{`R$ ${e.price}`}</h4>
+
+              <Container>
+                <Button>
+                  <button onClick={() => handleClick(e)}>
+                    {cart.some(
+                      (itemCart: { id: React.Key }) => itemCart.id === e.id
+                    ) ? (
+                      <BsFillCartCheckFill />
+                    ) : (
+                      <BsFillCartPlusFill />
+                    )}
+                  </button>
+                </Button>
+                <Button>
+                  <button onClick={() => handleClicke(e)}>
+                    {favorite.some(
+                      (itemFavorite: { id: React.Key }) =>
+                        itemFavorite.id === e.id
+                    ) ? (
+                      <MdOutlineFavorite />
+                    ) : (
+                      <MdFavoriteBorder />
+                    )}
+                  </button>
+                </Button>
+              </Container>
+            </div>
+          )
+        )}
       </Product>
     </div>
   );

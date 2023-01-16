@@ -18,3 +18,22 @@ div {
   align-items: center;
   padding: 20px;
 `;
+
+export const Container = styled.span`
+  button {
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+  }
+`;
+
+export const Button = styled.button`
+  button {
+    font-size: 20px;
+    backgroud: transparent;
+    border: none;
+    color: crimson;
+    display: flex;
+    justify-content: space-between;
+  }
+`;

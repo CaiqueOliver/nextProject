@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { BsFillCartCheckFill, BsFillCartPlusFill } from "react-icons/bs";
-import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import Head from "next/head";
+import {
+  MdFavoriteBorder,
+  MdOutlineFavorite,
+  MdOutlineAddShoppingCart,
+  MdOutlineRemoveShoppingCart,
+} from "react-icons/md";
 import styles from "../style/styles.module.css";
+import Navbar from "../components/navbar";
 
 export async function getStaticProps() {
   let data = [];
@@ -48,7 +54,7 @@ export default function Home({ data }) {
     }
   };
 
-  const handleClicke = (obj: any) => {
+  const handleFavorite = (obj: any) => {
     if (!obj.id) return;
     const element = favorite.find((e) => e.id === obj.id);
     if (!element) {
@@ -62,48 +68,64 @@ export default function Home({ data }) {
   };
 
   return (
-    <div className={styles.Product}>
-      {data.map(
-        (e: {
-          id: React.Key;
-          title:
-            | string
-            | number
-            | boolean
-            | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-            | React.ReactFragment
-            | React.ReactPortal;
-          thumbnail: string;
-          price: number;
-        }) => (
-          <div key={e.id} className={styles.newProduct}>
-            <h4>{e.title}</h4>
-            <img src={e.thumbnail} alt="Cel Photo" />
-            <h4>{`R$ ${e.price}`}</h4>
+    <>
+      <Head>
+        <title>Home - Loja</title>
+      </Head>
+      <Navbar />
+      <div className={styles.Product}>
+        {data.map(
+          (e: {
+            id: React.Key;
+            title:
+              | string
+              | number
+              | boolean
+              | React.ReactElement<
+                  any,
+                  string | React.JSXElementConstructor<any>
+                >
+              | React.ReactFragment
+              | React.ReactPortal;
+            thumbnail: string;
+            price: number;
+          }) => (
+            <div key={e.id} className={styles.newProduct}>
+              <h4>{e.title}</h4>
+              <img src={e.thumbnail} alt="Cel Photo" />
+              <h4>{`R$ ${e.price}`}</h4>
 
-            <div className={styles.Container}>
-              <button onClick={() => handleClick(e)} className={styles.Button}>
-                {cart.some(
-                  (itemCart: { id: React.Key }) => itemCart.id === e.id
-                ) ? (
-                  <BsFillCartCheckFill />
-                ) : (
-                  <BsFillCartPlusFill />
-                )}
-              </button>
-              <button onClick={() => handleClicke(e)} className={styles.Button}>
-                {favorite.some(
-                  (itemFavorite: { id: React.Key }) => itemFavorite.id === e.id
-                ) ? (
-                  <MdOutlineFavorite />
-                ) : (
-                  <MdFavoriteBorder />
-                )}
-              </button>
+              <div className={styles.Container}>
+                <button
+                  onClick={() => handleClick(e)}
+                  className={styles.Button}
+                >
+                  {cart.some(
+                    (itemCart: { id: React.Key }) => itemCart.id === e.id
+                  ) ? (
+                    <MdOutlineRemoveShoppingCart />
+                  ) : (
+                    <MdOutlineAddShoppingCart />
+                  )}
+                </button>
+                <button
+                  onClick={() => handleFavorite(e)}
+                  className={styles.Button}
+                >
+                  {favorite.some(
+                    (itemFavorite: { id: React.Key }) =>
+                      itemFavorite.id === e.id
+                  ) ? (
+                    <MdOutlineFavorite />
+                  ) : (
+                    <MdFavoriteBorder />
+                  )}
+                </button>
+              </div>
             </div>
-          </div>
-        )
-      )}
-    </div>
+          )
+        )}
+      </div>
+    </>
   );
 }

@@ -27,6 +27,7 @@ export async function getStaticProps() {
 export default function Home({ data }) {
   const [cart, setCart] = useState([]);
   const [favorite, setFavorite] = useState([]);
+  const [count, setCount] = useState<number>(1);
 
   useEffect(() => {
     const car = localStorage.getItem("car");
@@ -46,12 +47,15 @@ export default function Home({ data }) {
     const element = cart.find((e) => e.id === obj.id);
     if (!element) {
       setCart([obj, ...cart]);
+      setCount(count + 1);
       localStorage.setItem("car", JSON.stringify([obj, ...cart]));
     } else {
       const arrayFilter = cart.filter((e: { id: any }) => e.id !== obj.id);
       setCart(arrayFilter);
+      setCount(count - 1);
       localStorage.setItem("car", JSON.stringify(arrayFilter));
     }
+    console.log(count);
   };
 
   const handleFavorite = (obj: any) => {

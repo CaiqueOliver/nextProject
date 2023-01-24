@@ -8,23 +8,11 @@
   color: #73a9ff;
 }
 
-.link_itens {
+.SuperCart {
   display: flex;
-  list-style: none;
+  align-items: center;
 }
 
-.link_itens li {
-  margin-right: 1.3em;
-}
-
-.link_itens a {
-  color: #73a9ff;
-  text-decoration: none;
-  padding: 5px;
-  transition: 0.4s;
-  border-bottom: 2px solid transparent;
-}
-
-.link_itens a:hover {
-  border-color: #73a9ff;
+.Cart {
+  font-size: 25px;
 }
